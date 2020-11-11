@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert New Voter</title>
+</head>
+
+<script type="text/javascript">
+function validateState() {
+alert("Validating!");
+var x = document.inputForm.state.value;
+
+      alert(x.length);
+
+            if (x.length > 2 || x.length == 0) {
+               alert("Please enter a two letter state abbreviation")
+               return false;
+            }
+            else return( true );
+         }
+</script>
+
+
+<body>
+	<form name="inputForm" th:object="${newVoter}"
+		th:action="@{/inputVoter}" onsubmit="return validateState()"
+		method='POST'>
+		Name: <input name="name" size="20" th:field="*{name}"><br />
+		Political Party: <input name="politicalparty" size="10" th:field="*{politicalparty}"><br /> 
+		Phone Number: <input name="phone" size="20" th:field="*{phone}"><br /> 
+		Street: <input name="street" size="20" th:field="*{address.street}"><br />
+		City: <input name="city" size="20" th:field="*{address.city}"><br />
+		State:<input name="state" size="20" th:field="*{address.state}">
+		<br /> <input name="submit" type="submit" value="submit" />
+	</form>
+	<a href="viewAll">View all Voters</a>
+</body>
+</html>
